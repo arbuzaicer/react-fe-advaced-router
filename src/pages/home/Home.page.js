@@ -1,29 +1,25 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { appRoutes } from "../../routes/Routes";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
+import {
+  decrementAction,
+  getUsersRequestAction,
+} from "../../store/actions/counter.actions";
+import { getCountSelector } from "../../store/reducers/counter.reducer";
 import styles from "./home.module.css";
 
 const HomePage = () => {
-  const navigate = useNavigate();
-  const [inputValue, setInputValue] = useState("");
+  const dispatch = useDispatch();
+  const counter = useSelector(getCountSelector);
 
-  const navigateHandler = () => {
-    navigate(appRoutes.profile.path, {
-      state: {
-        value: inputValue,
-      },
-    });
-  };
+  const decrease = () => dispatch(decrementAction());
 
   return (
     <div className={styles["container"]}>
       hello from home page
-      <input
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-      <button onClick={navigateHandler}>Go to somwhere</button>
+      <button onClick={decrease}>-</button>
+      {counter}{" "}
+      <button onClick={() => dispatch(getUsersRequestAction())}>+</button>
     </div>
   );
 };
