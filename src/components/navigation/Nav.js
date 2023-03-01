@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { appRoutes } from "../../routes/Routes";
+import { appRoutes } from "../../routes/PrivateRoutes";
 
 const Nav = () => {
   return (

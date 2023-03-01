@@ -8,6 +8,8 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import store from "./store/store";
 
+import "./store/axios/axios-setup";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>

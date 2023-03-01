@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { appRoutes } from "../../routes/Routes";
+import { appRoutes } from "../../routes/PrivateRoutes";
 
 const NoFound = () => {
   const navigate = useNavigate();
