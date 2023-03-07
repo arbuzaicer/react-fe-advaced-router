@@ -1,0 +1,19 @@
+.form {
+  width: 400px;
+  padding: 40px;
+  display: flex;
+  margin: 0 auto;
+  border-radius: 10px;
+  flex-direction: column;
+  background-color: gray;
+}
+
+.form input {
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.signup {
+  margin-top: 10px;
+  text-align: center;
+}

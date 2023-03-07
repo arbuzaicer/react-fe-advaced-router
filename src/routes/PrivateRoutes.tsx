@@ -6,15 +6,6 @@ import HomePage from "../pages/home/Home.page";
 import SettingsPage from "../pages/settings/Settings.page";
 import ProfilePage from "../pages/profile/Profile.page";
 import NoFound from "../pages/no-found/NoFound";
-import UserSingle from "../pages/user-single/UserSingle";
-
-const MyOwnPage = () => {
-  return (
-    <div>
-      <h1>It's my page</h1>
-    </div>
-  );
-};
 
 export const appRoutes = {
   home: {
@@ -32,14 +23,9 @@ export const appRoutes = {
     path: "/profile",
     element: <ProfilePage />,
   },
-  contacts: {
-    id: 4,
-    path: "/contacts",
-    element: <ProfilePage />,
-  },
 };
 
-const Routes = () => {
+const PrivateRoutes = () => {
   return (
     <div>
       <Nav />
@@ -49,16 +35,10 @@ const Routes = () => {
           <Route key={id} path={path} element={element} />
         ))}
 
-        <Route path="/users">
-          <Route path="me" element={<MyOwnPage />} />
-
-          <Route path=":userId" element={<UserSingle />} />
-        </Route>
-
         <Route path="*" element={<NoFound />} />
       </ReactRouterRoutes>
     </div>
   );
 };
 
-export default Routes;
+export default PrivateRoutes;
