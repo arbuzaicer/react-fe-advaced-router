@@ -1,28 +1,51 @@
 import axios from "axios";
-import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  getAuthHostSelector,
-  getAuthTokenSelector,
-} from "../../store/reducers/auth.reducer";
+import { useCallback, useState } from "react";
 
+import Button from "../../components/button/Button";
 import styles from "./home.module.css";
 
+import { SingeCityWeatherDTO } from "../../types/dto-types";
+
 const HomePage = () => {
-  const dispatch = useDispatch();
-  const token = useSelector(getAuthTokenSelector);
-  const host = useSelector(getAuthHostSelector);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [weatherData, setWeatherData] = useState<SingeCityWeatherDTO | null>(
+    null
+  );
 
   const getCurrentAirQuality = useCallback(async () => {
-    const request = await axios.get("/current/airquality", {
-      params: { lon: "30.523333", lat: "50.450001" },
-    });
+    try {
+      setIsLoading(true);
+
+      const request = await axios.get<SingeCityWeatherDTO>(
+        "/current/airquality",
+        {
+          params: { lon: "30.523333", lat: "50.450001" },
+        }
+      );
+
+      if (request.status === 200) {
+        setWeatherData(request.data);
+      }
+    } finally {
+      setIsLoading(false);
+    }
   }, []);
 
   return (
     <div className={styles["container"]}>
       hello from home page
-      <button onClick={getCurrentAirQuality}>Get Current Air Quality</button>
+      <Button disabled={isLoading} onClick={getCurrentAirQuality}>
+        Gen some API data
+      </Button>
+      {weatherData ? (
+        <>
+          <h2>{weatherData.timezone}</h2>
+
+          <p>{weatherData.country_code}</p>
+
+          <p>{weatherData.data.map((el) => el.co)}</p>
+        </>
+      ) : null}
     </div>
   );
 };
