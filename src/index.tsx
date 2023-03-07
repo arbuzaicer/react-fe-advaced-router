@@ -10,7 +10,8 @@ import store from "./store/store";
 
 import "./store/axios/axios-setup";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById("root") as any);
+
 root.render(
   <StrictMode>
     <Provider store={store}>

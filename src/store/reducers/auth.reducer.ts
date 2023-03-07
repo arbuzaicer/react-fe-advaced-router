@@ -6,7 +6,7 @@ const initialState = {
   host: null,
 };
 
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case AUTH_LOGIN_TYPE: {
       const { token, host } = action.payload;
@@ -23,8 +23,8 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-export const getAuthSelector = (state) => state.auth.isAuth;
-export const getAuthTokenSelector = (state) => state.auth.token;
-export const getAuthHostSelector = (state) => state.auth.host;
+export const getAuthSelector = (state: any) => state.auth.isAuth;
+export const getAuthTokenSelector = (state: any) => state.auth.token;
+export const getAuthHostSelector = (state: any) => state.auth.host;
 
 export default authReducer;

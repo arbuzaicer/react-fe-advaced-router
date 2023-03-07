@@ -13,7 +13,7 @@ const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: any) => {
     e.preventDefault();
 
     const authData = {
